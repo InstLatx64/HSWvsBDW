@@ -177,11 +177,18 @@ startLabel_Code5_FMAPS_YMM_VPSUBD:
 		vfmadd231ps		ymm7, ymm7, ymm7
 		vfmadd231ps		ymm8, ymm8, ymm8
 		vfmadd231ps		ymm9, ymm9, ymm9
-		vpsubd			ymm10, ymm10, ymm10
-		vpsubd			ymm11, ymm11, ymm11
-		vpsubd			ymm12, ymm12, ymm12
-		vpsubd			ymm13, ymm13, ymm13
-		vpsubd			ymm14, ymm14, ymm14
+		vpsubd			ymm10, ymm10, ymm11
+		vpsubd			ymm11, ymm11, ymm12
+		vpsubd			ymm12, ymm12, ymm13
+		vpsubd			ymm13, ymm13, ymm14
+		vpsubd			ymm14, ymm14, ymm10
+
+		;vpxor			ymm10, ymm10, ymm11
+		;vpxor			ymm11, ymm11, ymm12
+		;vpxor			ymm12, ymm12, ymm13
+		;vpxor			ymm13, ymm13, ymm14
+		;vpxor			ymm14, ymm14, ymm10
+
 		dec				rcx
 		jnz				startLabel_Code5_FMAPS_YMM_VPSUBD
 
