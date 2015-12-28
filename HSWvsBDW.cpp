@@ -4,9 +4,11 @@
 #include "stdafx.h"
 
 using namespace std;
-extern "C" __int64 __fastcall testFMAPS(double *);
-extern "C" __int64 __fastcall testMULPS_C5(double *);
-extern "C" __int64 __fastcall testMULPS_C4(double *);
+extern "C" __int64 __fastcall Code1_FMAPS_YMM_VPADDD(double *);
+extern "C" __int64 __fastcall Code2_MULPS_YMM_C5(double *);
+extern "C" __int64 __fastcall Code3_MULPS_YMM_C4(double *);
+extern "C" __int64 __fastcall Code4_FMAPS_XMM_VPADDD(double *);
+extern "C" __int64 __fastcall Code5_FMAPS_YMM_VPSUBD(double *);
 
 typedef __int64(__fastcall *TEST_PTR)(double *);
 
@@ -23,14 +25,20 @@ void test(TEST_PTR testptr) {
 int main()
 {
 
-	cout << "FMAPS:    ";
-	test(testFMAPS);
+	cout << "Code1_FMAPS_YMM_VPADDD:   ";
+	test(Code1_FMAPS_YMM_VPADDD);
 
-	cout << "MULPS_C5: ";
-	test(testMULPS_C5);
+	cout << "Code2_MULPS_YMM_C5:       ";
+	test(Code2_MULPS_YMM_C5);
 
-	cout << "MULPS_C4: ";
-	test(testMULPS_C4);
+	cout << "Code3_MULPS_YMM_C4:       ";
+	test(Code3_MULPS_YMM_C4);
+
+	cout << "Code4_FMAPS_XMM_VPADDD:   ";
+	test(Code4_FMAPS_XMM_VPADDD);
+
+	cout << "Code5_FMAPS_YMM_VPSUBD:   ";
+	test(Code5_FMAPS_YMM_VPSUBD);
 
 	while (!_kbhit());
 }

@@ -28,6 +28,7 @@ head MACRO
 		cpuid
 
 		mov				rcx, 1000 * 1000
+		align 16
 ENDM
 
 tail MACRO
@@ -63,10 +64,10 @@ tail MACRO
 ENDM
 
 
-testFMAPS	proc
+Code1_FMAPS_YMM_VPADDD	proc
 		head
 
-startLabel_FMAPS:
+startLabel_Code1_FMAPS_YMM_VPADDD:
 		vfmadd231ps		ymm0, ymm0, ymm0
 		vfmadd231ps		ymm1, ymm1, ymm1
 		vfmadd231ps		ymm2, ymm2, ymm2
@@ -83,15 +84,15 @@ startLabel_FMAPS:
 		vpaddd			ymm13, ymm13, ymm13
 		vpaddd			ymm14, ymm14, ymm14
 		dec				rcx
-		jnz				startLabel_FMAPS
+		jnz				startLabel_Code1_FMAPS_YMM_VPADDD
 
 		tail
-testFMAPS endp
+Code1_FMAPS_YMM_VPADDD endp
 
-testMULPS_C5	proc
+Code2_MULPS_YMM_C5	proc
 		head
 
-startLabel_MULPS_C5:
+startLabel_Code2_MULPS_YMM_C5:
 		vmulps			ymm0, ymm0, ymm0
 		vmulps			ymm1, ymm1, ymm1
 		vmulps			ymm2, ymm2, ymm2
@@ -108,15 +109,15 @@ startLabel_MULPS_C5:
 		vpaddd			ymm13, ymm13, ymm13
 		vpaddd			ymm14, ymm14, ymm14
 		dec				rcx
-		jnz				startLabel_MULPS_C5
+		jnz				startLabel_Code2_MULPS_YMM_C5
 
 		tail
-testMULPS_C5 endp
+Code2_MULPS_YMM_C5 endp
 
-testMULPS_C4	proc
+Code3_MULPS_YMM_C4	proc
 		head
 
-startLabel_MULPS_C4:
+startLabel_Code3_MULPS_YMM_C4:
 		byte			0c4h, 0c1h, 07ch, 059h, 0c0h ;long VEX form vmulps ymm0, ymm0, ymm0
 		byte			0c4h, 0c1h, 074h, 059h, 0c9h ;long VEX form vmulps ymm1, ymm1, ymm1
 		byte			0c4h, 0c1h, 06ch, 059h, 0d2h ;long VEX form vmulps ymm2, ymm2, ymm2
@@ -133,9 +134,59 @@ startLabel_MULPS_C4:
 		vpaddd			ymm13, ymm13, ymm13
 		vpaddd			ymm14, ymm14, ymm14
 		dec				rcx
-		jnz				startLabel_MULPS_C4
+		jnz				startLabel_Code3_MULPS_YMM_C4
 
 		tail
-testMULPS_C4 endp
+Code3_MULPS_YMM_C4 endp
+
+Code4_FMAPS_XMM_VPADDD	proc
+		head
+
+startLabel_Code4_FMAPS_XMM_VPADDD:
+		vfmadd231ps		xmm0, xmm0, xmm0
+		vfmadd231ps		xmm1, xmm1, xmm1
+		vfmadd231ps		xmm2, xmm2, xmm2
+		vfmadd231ps		xmm3, xmm3, xmm3
+		vfmadd231ps		xmm4, xmm4, xmm4
+		vfmadd231ps		xmm5, xmm5, xmm5
+		vfmadd231ps		xmm6, xmm6, xmm6
+		vfmadd231ps		xmm7, xmm7, xmm7
+		vfmadd231ps		xmm8, xmm8, xmm8
+		vfmadd231ps		xmm9, xmm9, xmm9
+		vpaddd			xmm10, xmm10, xmm10
+		vpaddd			xmm11, xmm11, xmm11
+		vpaddd			xmm12, xmm12, xmm12
+		vpaddd			xmm13, xmm13, xmm13
+		vpaddd			xmm14, xmm14, xmm14
+		dec				rcx
+		jnz				startLabel_Code4_FMAPS_XMM_VPADDD
+
+		tail
+Code4_FMAPS_XMM_VPADDD endp
+
+Code5_FMAPS_YMM_VPSUBD	proc
+		head
+startLabel_Code5_FMAPS_YMM_VPSUBD:
+		vfmadd231ps		ymm0, ymm0, ymm0
+		vfmadd231ps		ymm1, ymm1, ymm1
+		vfmadd231ps		ymm2, ymm2, ymm2
+		vfmadd231ps		ymm3, ymm3, ymm3
+		vfmadd231ps		ymm4, ymm4, ymm4
+		vfmadd231ps		ymm5, ymm5, ymm5
+		vfmadd231ps		ymm6, ymm6, ymm6
+		vfmadd231ps		ymm7, ymm7, ymm7
+		vfmadd231ps		ymm8, ymm8, ymm8
+		vfmadd231ps		ymm9, ymm9, ymm9
+		vpsubd			ymm10, ymm10, ymm10
+		vpsubd			ymm11, ymm11, ymm11
+		vpsubd			ymm12, ymm12, ymm12
+		vpsubd			ymm13, ymm13, ymm13
+		vpsubd			ymm14, ymm14, ymm14
+		dec				rcx
+		jnz				startLabel_Code5_FMAPS_YMM_VPSUBD
+
+		tail
+Code5_FMAPS_YMM_VPSUBD endp
+
 
 end
