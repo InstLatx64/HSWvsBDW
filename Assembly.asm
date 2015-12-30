@@ -5,7 +5,8 @@ head MACRO
 		push			rsi
 		push			rdi
 
-		mov				r8, rcx
+		mov				r8, rcx			;xmm6-xmm15 save
+		mov				r9, rdx			;mem operands
 		movaps			[r8 + 00h], xmm6
 		movaps			[r8 + 10h], xmm7
 		movaps			[r8 + 20h], xmm8
@@ -195,5 +196,29 @@ startLabel_Code5_FMAPS_YMM_VPSUBD:
 		tail
 Code5_FMAPS_YMM_VPSUBD endp
 
+Code6_FMAPS_YMM_MEMOP	proc
+		head
+
+startLabel_Code6_FMAPS_YMM_MEMOP:
+		vfmadd231ps		ymm0, ymm0, [r9]
+		vfmadd231ps		ymm1, ymm1, [r9]
+		vfmadd231ps		ymm2, ymm2, [r9]
+		vfmadd231ps		ymm3, ymm3, [r9]
+		vfmadd231ps		ymm4, ymm4, [r9]
+		vfmadd231ps		ymm5, ymm5, [r9]
+		vfmadd231ps		ymm6, ymm6, [r9]
+		vfmadd231ps		ymm7, ymm7, [r9]
+		vfmadd231ps		ymm8, ymm8, [r9]
+		vfmadd231ps		ymm9, ymm9, [r9]
+		vpaddd			ymm10, ymm10, [r9]
+		vpaddd			ymm11, ymm11, [r9]
+		vpaddd			ymm12, ymm12, [r9]
+		vpaddd			ymm13, ymm13, [r9]
+		vpaddd			ymm14, ymm14, [r9]
+		dec				rcx
+		jnz				startLabel_Code6_FMAPS_YMM_MEMOP
+
+		tail
+Code6_FMAPS_YMM_MEMOP endp
 
 end
