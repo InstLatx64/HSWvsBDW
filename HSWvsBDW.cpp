@@ -9,7 +9,9 @@ extern "C" __int64 __fastcall Code2_MULPS_YMM_C5(double *, double *);
 extern "C" __int64 __fastcall Code3_MULPS_YMM_C4(double *, double *);
 extern "C" __int64 __fastcall Code4_FMAPS_XMM_VPADDD(double *, double *);
 extern "C" __int64 __fastcall Code5_FMAPS_YMM_VPSUBD(double *, double *);
-extern "C" __int64 __fastcall Code6_FMAPS_YMM_MEMOP(double *, double *);
+extern "C" __int64 __fastcall Code6_FMAPS_YMM_MEMOP2(double *, double *);
+extern "C" __int64 __fastcall Code7_FMAPS_YMM_VPADDD_UNUSED(double *, double *);
+extern "C" __int64 __fastcall Code8_FMAPS_XMM_VPADDD_UNUSED(double *, double *);
 
 typedef __int64(__fastcall *TEST_PTR)(double *, double *);
 
@@ -42,8 +44,14 @@ int main()
 	cout << "Code5_FMAPS_YMM_VPSUBD:   ";
 	test(Code5_FMAPS_YMM_VPSUBD);
 
-	cout << "Code6_FMAPS_YMM_MEMOP:    ";
-	test(Code6_FMAPS_YMM_MEMOP);
+	cout << "Code6_FMAPS_YMM_MEMOP2:       ";
+	test(Code6_FMAPS_YMM_MEMOP2);
+
+	cout << "Code7_FMAPS_YMM_VPADDD_UNUSED:";
+	test(Code7_FMAPS_YMM_VPADDD_UNUSED);
+
+	cout << "Code8_FMAPS_XMM_VPADDD_UNUSED:";
+	test(Code8_FMAPS_XMM_VPADDD_UNUSED);
 	
 	while (!_kbhit());
 }

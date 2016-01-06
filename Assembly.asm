@@ -196,29 +196,80 @@ startLabel_Code5_FMAPS_YMM_VPSUBD:
 		tail
 Code5_FMAPS_YMM_VPSUBD endp
 
-Code6_FMAPS_YMM_MEMOP	proc
+Code6_FMAPS_YMM_MEMOP2	proc
 		head
 
-startLabel_Code6_FMAPS_YMM_MEMOP:
-		vfmadd231ps		ymm0, ymm0, [r9]
-		vfmadd231ps		ymm1, ymm1, [r9]
-		vfmadd231ps		ymm2, ymm2, [r9]
-		vfmadd231ps		ymm3, ymm3, [r9]
-		vfmadd231ps		ymm4, ymm4, [r9]
-		vfmadd231ps		ymm5, ymm5, [r9]
-		vfmadd231ps		ymm6, ymm6, [r9]
-		vfmadd231ps		ymm7, ymm7, [r9]
-		vfmadd231ps		ymm8, ymm8, [r9]
-		vfmadd231ps		ymm9, ymm9, [r9]
+startLabel_Code6_FMAPS_YMM_MEMOP2:
+		vfmadd231ps		ymm0, ymm0, ymm0
+		vfmadd231ps		ymm1, ymm1, ymm1
+		vfmadd231ps		ymm2, ymm2, ymm2
+		vfmadd231ps		ymm3, ymm3, ymm3
+		vfmadd231ps		ymm4, ymm4, ymm4
+		vfmadd231ps		ymm5, ymm5, ymm5
+		vfmadd231ps		ymm6, ymm6, ymm6
+		vfmadd231ps		ymm7, ymm7, ymm7
+		vfmadd231ps		ymm8, ymm8, ymm8
+		vfmadd231ps		ymm9, ymm9, ymm9
 		vpaddd			ymm10, ymm10, [r9]
 		vpaddd			ymm11, ymm11, [r9]
 		vpaddd			ymm12, ymm12, [r9]
 		vpaddd			ymm13, ymm13, [r9]
 		vpaddd			ymm14, ymm14, [r9]
 		dec				rcx
-		jnz				startLabel_Code6_FMAPS_YMM_MEMOP
+		jnz				startLabel_Code6_FMAPS_YMM_MEMOP2
 
 		tail
-Code6_FMAPS_YMM_MEMOP endp
+Code6_FMAPS_YMM_MEMOP2 endp
+
+Code7_FMAPS_YMM_VPADDD_UNUSED	proc
+		head
+
+startLabel_Code7_FMAPS_YMM_VPADDD_UNUSED:
+		vfmadd231ps		ymm0, ymm0, ymm0
+		vfmadd231ps		ymm1, ymm1, ymm1
+		vfmadd231ps		ymm2, ymm2, ymm2
+		vfmadd231ps		ymm3, ymm3, ymm3
+		vfmadd231ps		ymm4, ymm4, ymm4
+		vfmadd231ps		ymm5, ymm5, ymm5
+		vfmadd231ps		ymm6, ymm6, ymm6
+		vfmadd231ps		ymm7, ymm7, ymm7
+		vfmadd231ps		ymm8, ymm8, ymm8
+		vfmadd231ps		ymm9, ymm9, ymm9
+		vpaddd			ymm10, ymm15, ymm15
+		vpaddd			ymm11, ymm15, ymm15
+		vpaddd			ymm12, ymm15, ymm15
+		vpaddd			ymm13, ymm15, ymm15
+		vpaddd			ymm14, ymm15, ymm15
+		dec				rcx
+		jnz				startLabel_Code7_FMAPS_YMM_VPADDD_UNUSED
+
+		tail
+Code7_FMAPS_YMM_VPADDD_UNUSED endp
+
+Code8_FMAPS_XMM_VPADDD_UNUSED	proc
+		head
+
+startLabel_Code8_FMAPS_XMM_VPADDD_UNUSED:
+		vfmadd231ps		xmm0, xmm0, xmm0
+		vfmadd231ps		xmm1, xmm1, xmm1
+		vfmadd231ps		xmm2, xmm2, xmm2
+		vfmadd231ps		xmm3, xmm3, xmm3
+		vfmadd231ps		xmm4, xmm4, xmm4
+		vfmadd231ps		xmm5, xmm5, xmm5
+		vfmadd231ps		xmm6, xmm6, xmm6
+		vfmadd231ps		xmm7, xmm7, xmm7
+		vfmadd231ps		xmm8, xmm8, xmm8
+		vfmadd231ps		xmm9, xmm9, xmm9
+		vpaddd			xmm10, xmm15, xmm15
+		vpaddd			xmm11, xmm15, xmm15
+		vpaddd			xmm12, xmm15, xmm15
+		vpaddd			xmm13, xmm15, xmm15
+		vpaddd			xmm14, xmm15, xmm15
+		dec				rcx
+		jnz				startLabel_Code8_FMAPS_XMM_VPADDD_UNUSED
+
+		tail
+Code8_FMAPS_XMM_VPADDD_UNUSED endp
+
 
 end
